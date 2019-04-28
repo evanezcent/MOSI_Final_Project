@@ -15,27 +15,36 @@ v = []
 v = [v0]*N
 vCar = []
 clr = ['red','green','blue','black','yellow','orange','magenta','purple','pink','aquamarine']
+koordinat =[]
+
+for a in range(10):
+    koordinat.append(rd.randint(-500,500))
+koordinat.sort()
 
 turtle.Screen().setup(1000,300,0,0)
-turtle.Screen().delay(1)
+turtle.Screen().delay(0)
 
 def jarakMobil() :
     if (k == N-1):
         if(tr[k].xcor() > tr[0].xcor()):
-           d = M - tr[i].xcor() + tr[0].xcor()
+           d = abs(M - (tr[i].xcor() - tr[0].xcor()))
+           
         else :
-           d = tr[0].xcor() - tr[k].xcor()
+           d = abs(tr[0].xcor() - tr[k].xcor())
+           
     else :
         if (tr[k].xcor() < tr[k+1].xcor()) :
-            d = tr[k+1].xcor() - tr[k].xcor()
+            d = abs(tr[k+1].xcor() - tr[k].xcor())
+           
         else:
-            d = (M-1) - tr[k+1].xcor() + tr[k].xcor()
+            d = abs(M - (tr[k+1].xcor() - tr[k].xcor()))
+            
     return d
         
 def updateV():
     v[k] = min(v[k]+1, vmax)
     d = jarakMobil()
-    v[k] = min(v[k], d-1)
+    v[k] = min(v[k], d-5)
     x = np.random.uniform(0,1)
     if (x <= p):
         v[k] = max(0,v[k]-1)
@@ -45,15 +54,13 @@ def updateV():
 for j in range(10) :
     tr.append(turtle.Turtle())
 
-
 for i in range (10) :
-    x = rd.randint(-500,500)
     tr[i].color(clr[i])
     tr[i].penup()
-    tr[i].goto(x,0)
+    tr[i].goto(koordinat[i],0)
     
 
-while True:
+while t <= tmax:
     for k in range(10):
         tr[k].forward(updateV())
         tr[k].speed(1)
