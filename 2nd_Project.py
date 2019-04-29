@@ -21,6 +21,8 @@ nPutaran = [] #banyak mobil melewati koordinat awal
 nPutaran = [v0]*N
 clr = ['red','green','blue','black','yellow','orange','magenta','purple','pink','aquamarine']
 koordinat = [] #koordinat awal mobil
+
+#membuat koordinat
 for a in range(10):
     koordinat.append(rd.randint(-500,500))
 koordinat.sort()
